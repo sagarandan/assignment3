@@ -1,0 +1,115 @@
+
+Ans1
+
+def threeSumClosest(nums, target):
+    nums.sort()
+    closest_sum = float('inf')
+    for i in range(len(nums) - 2):
+        left, right = i + 1, len(nums) - 1
+        while left < right:
+            current_sum = nums[i] + nums[left] + nums[right]
+            if abs(current_sum - target) < abs(closest_sum - target):
+                closest_sum = current_sum
+            if current_sum < target:
+                left += 1
+            else:
+                right -= 1
+    return closest_sum
+
+Ans2
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        res = []
+
+        def k_sum(nums, k, target, arr, start_idx):
+            if k == 2:
+                two_sum(nums, arr, k, start_idx, target)
+                return
+            for i in range(start_idx, len(nums) - k + 1):
+                if i > start_idx and nums[i] == nums[i - 1]:
+                    continue
+                k_sum(nums, k - 1, target - nums[i], arr + [nums[i]], i + 1)
+
+        def two_sum(nums, arr, k, start_idx, target):
+            left = start_idx
+            right = len(nums) - 1
+
+Ans4
+
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        if nums==[]:
+            return 0
+        l = len(nums)
+        i= 0
+        j= l-1
+        if target > nums[j]:
+            return l
+        elif target<nums[i]:
+            return 0
+        while (i<=j):
+    
+            mid = i + ((j-i)//2)        
+            if nums[mid] == target:
+                return mid
+            elif target < nums[mid]:
+                j=mid-1
+            elif target > nums[mid]:
+                i=mid+1
+        return i
+
+Ans5
+
+class Solution(object):
+    def plusOne(self, digits):
+        string =""
+        result =[]
+        for d in digits:
+            string += str(d)
+        i = int(string) + 1
+        for w in str(i):
+            result.append(w)
+        return result
+Ans6
+
+class Solution(object):
+    def singleNumber(self, nums):
+        map = {}
+        if ( nums == [] ):
+            return -1
+        for d in nums:
+            if ( d in map):
+                del map[d]
+            else:
+                map[d] = 1
+        return list(map.keys())[0]
+
+Ans8
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+       # If there are no meetings, we don't need any rooms.
+        if not intervals:
+            return 0
+num_rooms = 0
+# Separate out the start and the end timings and sort them individually.
+        start_timings = sorted(i[0] for i in intervals)
+        end_timings = sorted(i[1] for i in intervals)
+        L = len(intervals)
+# The two pointers in the algorithm: e_ptr and s_ptr.
+        end_pointer = 0
+        start_pointer = 0
+# Until all the meetings have been processed
+        while start_pointer < L:
+            # If there is a meeting that has ended by the time the meeting at `start_pointer` starts
+            print(start_timings[start_pointer],end_timings[end_pointer])
+            if start_timings[start_pointer] < end_timings[end_pointer]:
+                # Free up a room and increment the end_pointer.
+                num_rooms += 1
+            else:
+                end_pointer += 1
+start_pointer += 1
+return num_rooms
+Coding Interviews
+Algorithms
